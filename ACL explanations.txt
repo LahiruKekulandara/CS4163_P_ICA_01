@@ -1,0 +1,19 @@
+ACL Configuration
+
+01. What did
+- Created an extended ACL on Core2 named `100`.
+- The ACL allows traffic from VLAN 10 (Engineering) to access VLAN 20 (Guest).
+- It blocks any traffic from VLAN 20 going to VLAN 10.
+- Applied the ACL `inbound` on interface `FastEthernet0/0.10` (VLAN 10 subinterface on Core2).
+
+02. Why did
+- The requirement was: VLAN 10 PCs can access VLAN 20, but VLAN 20 should NOT initiate access to VLAN 10.
+- By placing the ACL on the VLAN 10 interface 'inbound', it filters packets 'coming into' VLAN 10.
+- This is a common method for controlling direction of traffic using extended ACLs.
+
+03. How verified
+- pinged from PC0 (192.168.10.10) to PC11 (192.168.20.15) → 'Successful'
+- pinged from PC11 (192.168.20.15) to PC0 → 'Request timed out' (blocked by ACL)
+- used:
+  - `show access-lists` → to verify ACL hit counts
+  - `show run | include access-group` → to verify where ACL is applied
