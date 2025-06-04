@@ -1,0 +1,37 @@
+Switch>enable
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname Dist3
+Dist3(config)#ip routing
+Dist3(config)#vlan 10
+Dist3(config-vlan)#name Engineering
+Dist3(config-vlan)#vlan 20
+Dist3(config-vlan)#name Guest
+Dist3(config-vlan)#vlan 99
+Dist3(config-vlan)#name Management
+Dist3(config-vlan)#exit
+Dist3(config)#
+Dist3(config)#interface vlan 10
+Dist3(config-if)#ip address 192.168.10.252 255.255.255.0
+Dist3(config-if)#no shutdown
+Dist3(config-if)#exit
+Dist3(config)#
+Dist3(config)#interface vlan 20
+Dist3(config-if)#ip address 192.168.20.252 255.255.255.0
+Dist3(config-if)#no shutdown
+Dist3(config-if)#exit
+Dist3(config)#
+Dist3(config)#interface vlan 99
+Dist3(config-if)#ip address 192.168.99.12 255.255.255.0
+Dist3(config-if)#no shutdown
+Dist3(config-if)#exit
+Dist3(config)#
+Dist3(config)#interface GigabitEthernet0/1
+Dist3(config-if)#switchport trunk encapsulation dot1q
+Dist3(config-if)#switchport mode trunk
+Dist3(config-if)#exit
+Dist3(config)#
+Dist3(config)#interface FastEthernet0/1
+Dist3(config-if)#switchport mode access
+Dist3(config-if)#switchport access vlan 20
+Dist3(config-if)#exit

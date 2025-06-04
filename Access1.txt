@@ -1,0 +1,57 @@
+Switch>enable
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname Acc1
+Acc1(config)#
+Acc1(config)#vlan 10
+Acc1(config-vlan)#vlan 99
+Acc1(config-vlan)#
+Acc1(config-vlan)#interface FastEthernet0/1
+Acc1(config-if)# switchport mode access
+Acc1(config-if)# switchport access vlan 10
+Acc1(config-if)#interface FastEthernet0/2
+Acc1(config-if)# switchport mode access
+Acc1(config-if)# switchport access vlan 10
+Acc1(config-if)#interface FastEthernet0/3
+Acc1(config-if)# switchport mode access
+Acc1(config-if)# switchport access vlan 10
+Acc1(config-if)#
+Acc1(config-if)#interface FastEthernet0/4
+Acc1(config-if)# description To Dist1
+Acc1(config-if)# switchport mode trunk
+Acc1(config-if)# no shutdown
+Acc1(config-if)#
+Acc1(config-if)#interface vlan 99
+Acc1(config-if)# ip address 192.168.99.20 255.255.255.0
+Acc1(config-if)# no shutdown
+Acc1(config-if)#
+Acc1(config-if)#exit
+Acc1(config)#
+Acc1(config)#
+
+
+
+
+
+
+
+
+Acc1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+

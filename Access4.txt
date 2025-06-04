@@ -1,0 +1,55 @@
+Switch>enable
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname Acc4
+Acc4(config)#
+Acc4(config)#vlan 20
+Acc4(config-vlan)#vlan 99
+Acc4(config-vlan)#
+Acc4(config-vlan)#interface FastEthernet0/1
+Acc4(config-if)# switchport mode access
+Acc4(config-if)# switchport access vlan 20
+Acc4(config-if)#interface FastEthernet0/2
+Acc4(config-if)# switchport mode access
+Acc4(config-if)# switchport access vlan 20
+Acc4(config-if)#interface FastEthernet0/3
+Acc4(config-if)# switchport mode access
+Acc4(config-if)# switchport access vlan 20
+Acc4(config-if)#
+Acc4(config-if)#interface GigabitEthernet0/1
+Acc4(config-if)# description To Dist3
+Acc4(config-if)# switchport mode trunk
+
+Acc4(config-if)# no shutdown
+Acc4(config-if)#
+Acc4(config-if)#interface vlan 99
+Acc4(config-if)# ip address 192.168.99.23 255.255.255.0
+Acc4(config-if)# no shutdown
+Acc4(config-if)#
+Acc4(config-if)#exit
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan99, changed state to up
+
+Acc4(config)#
+
+
+
+
+
+
+
+
+Acc4 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+

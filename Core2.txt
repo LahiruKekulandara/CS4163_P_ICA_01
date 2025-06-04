@@ -1,0 +1,125 @@
+Router2>enable
+Router2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router2(config)#
+Router2(config)#hostname Core2
+Core2(config)#
+Core2(config)#interface FastEthernet0/0
+Core2(config-if)# description To Core1
+Core2(config-if)# no shutdown
+Core2(config-if)#
+Core2(config-if)#interface FastEthernet0/0.10
+Core2(config-subif)# encapsulation dot1Q 10
+Core2(config-subif)# ip address 192.168.10.1 255.255.255.0
+Core2(config-subif)#
+Core2(config-subif)#interface FastEthernet0/0.20
+Core2(config-subif)# encapsulation dot1Q 20
+Core2(config-subif)# ip address 192.168.20.1 255.255.255.0
+Core2(config-subif)# ip access-group VLAN_BLOCK in
+Core2(config-subif)#
+Core2(config-subif)#interface FastEthernet0/0.99
+Core2(config-subif)# encapsulation dot1Q 99
+Core2(config-subif)# ip address 192.168.99.1 255.255.255.0
+Core2(config-subif)#
+Core2(config-subif)#interface FastEthernet0/3/0
+Core2(config-if)# description To Dist3
+Core2(config-if)# no shutdown
+Core2(config-if)#
+Core2(config-if)#ip access-list extended VLAN_BLOCK
+Core2(config-ext-nacl)# deny ip 192.168.20.0 0.0.0.255 192.168.10.0 0.0.0.255
+Core2(config-ext-nacl)# permit ip any any
+Core2(config-ext-nacl)#
+Core2(config-ext-nacl)#exit
+Core2(config)#
+Core2(config)#router ospf 1
+Core2(config-router)# network 192.168.10.0 0.0.0.255 area 0
+Core2(config-router)# network 192.168.20.0 0.0.0.255 area 0
+Core2(config-router)# network 192.168.99.0 0.0.0.255 area 0
+Core2(config-router)#
+Core2(config-router)#exit
+Core2(config)#
+Core2(config)#
+Core2(config)#exit
+Core2#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Core2#exit
+
+
+
+
+
+
+
+
+
+Core2 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Core2>exit
+
+
+
+
+
+
+
+
+
+Core2 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Core2>enable
+Core2#conf t
+Core2(config)#
+Core2(config)#no access-list 100
+Core2(config)#access-list 100 deny ip 192.168.20.0 0.0.0.255 192.168.10.0 0.0.0.255
+Core2(config)#access-list 100 permit ip any any
+Core2(config)#
+Core2(config)#interface FastEthernet0/0.20
+Core2(config-subif)# ip access-group 100 in
+Core2(config-subif)#
+Core2(config-subif)#end
+Core2#wr
+Building configuration...
+[OK]
+Core2#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Core2#exit

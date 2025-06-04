@@ -1,0 +1,49 @@
+Switch>enable
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname Dist1
+Dist1(config)#ip routing
+Dist1(config)#vlan 10
+Dist1(config-vlan)#name Engineering
+Dist1(config-vlan)#vlan 20
+Dist1(config-vlan)#name Guest
+Dist1(config-vlan)#vlan 99
+Dist1(config-vlan)#name Management
+Dist1(config-vlan)#exit
+Dist1(config)#
+Dist1(config)#interface vlan 10
+Dist1(config-if)#ip address 192.168.10.254 255.255.255.0
+Dist1(config-if)#no shutdown
+Dist1(config-if)#exit
+Dist1(config)#
+Dist1(config)#interface vlan 20
+Dist1(config-if)#ip address 192.168.20.254 255.255.255.0
+Dist1(config-if)#no shutdown
+Dist1(config-if)#exit
+Dist1(config)#
+Dist1(config)#interface vlan 99
+Dist1(config-if)#ip address 192.168.99.10 255.255.255.0
+Dist1(config-if)#no shutdown
+Dist1(config-if)#exit
+Dist1(config)#
+Dist1(config)#interface GigabitEthernet0/1
+Dist1(config-if)#switchport trunk encapsulation dot1q
+Dist1(config-if)#switchport mode trunk
+Dist1(config-if)#exit
+Dist1(config)#
+Dist1(config)#interface GigabitEthernet0/2
+Dist1(config-if)#switchport trunk encapsulation dot1q
+Dist1(config-if)#switchport mode trunk
+Dist1(config-if)#exit
+Dist1(config)#
+Dist1(config)#interface range FastEthernet0/1 - 3
+Dist1(config-if-range)#switchport mode access
+Dist1(config-if-range)#switchport access vlan 10
+Dist1(config-if-range)#exit
+Dist1(config)#
+Dist1(config)#access-list 100 deny ip 192.168.20.0 0.0.0.255 192.168.10.0 0.0.0.255
+Dist1(config)#access-list 100 permit ip any any
+Dist1(config)#
+Dist1(config)#interface vlan 20
+Dist1(config-if)#ip access-group 100 in
+Dist1(config-if)#exit

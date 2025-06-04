@@ -1,0 +1,53 @@
+Switch>enable
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname Dist2
+Dist2(config)#ip routing
+Dist2(config)#vlan 10
+Dist2(config-vlan)#name Engineering
+Dist2(config-vlan)#vlan 20
+Dist2(config-vlan)#name Guest
+Dist2(config-vlan)#vlan 99
+Dist2(config-vlan)#name Management
+Dist2(config-vlan)#exit
+Dist2(config)#
+Dist2(config)#interface vlan 10
+Dist2(config-if)#ip address 192.168.10.253 255.255.255.0
+Dist2(config-if)#no shutdown
+Dist2(config-if)#exit
+Dist2(config)#
+Dist2(config)#interface vlan 20
+Dist2(config-if)#ip address 192.168.20.253 255.255.255.0
+Dist2(config-if)#no shutdown
+Dist2(config-if)#exit
+Dist2(config)#
+Dist2(config)#interface vlan 99
+Dist2(config-if)#ip address 192.168.99.11 255.255.255.0
+Dist2(config-if)#no shutdown
+Dist2(config-if)#exit
+Dist2(config)#
+Dist2(config)#interface GigabitEthernet0/1
+Dist2(config-if)#switchport trunk encapsulation dot1q
+Dist2(config-if)#switchport mode trunk
+Dist2(config-if)#exit
+Dist2(config)#
+Dist2(config)#interface FastEthernet0/1
+Dist2(config-if)#switchport mode access
+Dist2(config-if)#switchport access vlan 10
+Dist2(config-if)#exit
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+

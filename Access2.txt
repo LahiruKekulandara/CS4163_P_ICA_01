@@ -1,0 +1,63 @@
+Switch>enable
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname Acc2
+Acc2(config)#
+Acc2(config)#vlan 10
+Acc2(config-vlan)#vlan 99
+Acc2(config-vlan)#
+Acc2(config-vlan)#interface FastEthernet0/1
+Acc2(config-if)# switchport mode access
+Acc2(config-if)# switchport access vlan 10
+Acc2(config-if)#interface FastEthernet0/2
+Acc2(config-if)# switchport mode access
+Acc2(config-if)# switchport access vlan 10
+Acc2(config-if)#interface FastEthernet0/3
+Acc2(config-if)# switchport mode access
+Acc2(config-if)# switchport access vlan 10
+Acc2(config-if)#
+Acc2(config-if)#interface GigabitEthernet0/1
+Acc2(config-if)# description To Dist1
+Acc2(config-if)# switchport mode trunk
+
+Acc2(config-if)# no shutdown
+Acc2(config-if)#
+Acc2(config-if)#interface vlan 99
+Acc2(config-if)# ip address 192.168.99.21 255.255.255.0
+Acc2(config-if)# no shutdown
+Acc2(config-if)#
+Acc2(config-if)#exit
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan99, changed state to up
+
+Acc2(config)#
+
+
+
+
+
+
+
+
+Acc2 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
